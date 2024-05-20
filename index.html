@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Country Flags</title>
+</head>
+<body>
+  <h1>Country Flags</h1>
+ <div id="flags"></div>
+
+ <h1>Country Names</h1>
+<div id="flags1"></div>
+
+
+<h1>Country Regions</h1>
+<div id="flags2"></div>
+
+<h1>Sub Regions</h1>
+<div id="flags3"></div>
+
+<h1>Population</h1>
+<div id="flags4"></div>
+
+
+<script>
+fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const flagsContainer = document.getElementById('flags');
+    data.forEach(country => {
+      const img = document.createElement('img');
+      img.src = country.flags.png;
+      img.alt = 'Flag of ' + country.name.common;
+      flagsContainer.appendChild(img);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const flagsContainer = document.getElementById('flags1');
+    data.forEach(country => {
+      const label = document.createElement('label');
+      label.textContent = country.name.common + ",";  
+      flagsContainer.appendChild(label);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const flagsContainer = document.getElementById('flags2');
+    data.forEach(country => {
+      const label = document.createElement('label');
+      label.textContent = country.region + ",";  
+      flagsContainer.appendChild(label);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const flagsContainer = document.getElementById('flags3');
+    data.forEach(country => {
+      const label = document.createElement('label');
+      label.textContent = country.subregion + ",";  
+      flagsContainer.appendChild(label);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+  fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const flagsContainer = document.getElementById('flags4');
+    data.forEach(country => {
+      const label = document.createElement('label');
+      label.textContent = country.name.common + "-" + country.population + ",";  
+      flagsContainer.appendChild(label);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+</script>
+</body>
+</html>
